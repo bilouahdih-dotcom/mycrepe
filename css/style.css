@@ -330,6 +330,89 @@ h1,h2,h3{ font-family:var(--titre); font-weight:600; line-height:1.15; }
 .formule p{ color:#FCE3EA; margin-top:6px; }
 .formule .gros-prix{ font-family:var(--titre); font-size:46px; font-weight:700; }
 
+/* Vignette photo dans les titres de catégorie (page carte) */
+.menu-titre{ justify-content:space-between; }
+.menu-titre .gauche{ display:flex; align-items:center; gap:16px; }
+.menu-vignette{
+  width:84px; height:64px; border-radius:12px; object-fit:cover; flex-shrink:0;
+}
+
+/* ============================================================
+   LIGHTBOX (galerie)
+   ============================================================ */
+.lightbox{
+  position:fixed; inset:0; background:rgba(38,33,31,.88); z-index:200;
+  display:none; align-items:center; justify-content:center; padding:30px;
+}
+.lightbox.ouvert{ display:flex; }
+.lightbox img{ max-width:90%; max-height:86vh; border-radius:12px; }
+.lightbox .fermer{
+  position:absolute; top:22px; right:26px; color:#fff; font-size:34px;
+  background:none; border:none; cursor:pointer; line-height:1;
+}
+.galerie a{ cursor:pointer; }
+
+/* ============================================================
+   COMPOSEUR DE CRÊPE (composer.html)
+   ============================================================ */
+.compo-hero{
+  background:var(--rose-clair); text-align:center; padding:56px 26px 40px;
+}
+.compo-hero h1{ font-size:46px; color:var(--rose-fonce); }
+.compo-hero h1 em{ font-style:italic; color:var(--rose); }
+.compo-hero p{ color:var(--rose-fonce); margin:14px auto 0; max-width:540px; opacity:.9; }
+
+.compo-layout{ display:grid; grid-template-columns:1fr 360px; gap:36px; align-items:start; }
+
+.type-toggle{ display:flex; gap:12px; margin-bottom:34px; }
+.type-btn{
+  flex:1; padding:18px; border-radius:var(--rayon); border:1.5px solid var(--rose-pastel);
+  background:#fff; cursor:pointer; font-family:var(--texte); font-size:17px; font-weight:500;
+  color:var(--rose-fonce); display:flex; align-items:center; justify-content:center; gap:10px; transition:.2s;
+}
+.type-btn i{ font-size:22px; }
+.type-btn.actif{ background:var(--rose); color:#fff; border-color:var(--rose); }
+
+.ing-group{ margin-bottom:28px; }
+.ing-group h3{ font-size:18px; margin-bottom:14px; display:flex; align-items:center; gap:9px; }
+.ing-group h3 i{ color:var(--rose); font-size:20px; }
+.ing-chips{ display:flex; flex-wrap:wrap; gap:10px; }
+.chip{
+  border:1.5px solid var(--rose-pastel); background:#fff; color:var(--rose-fonce);
+  padding:9px 15px; border-radius:30px; cursor:pointer; font-size:14px;
+  display:inline-flex; gap:8px; align-items:center; transition:.15s; user-select:none;
+}
+.chip:hover{ border-color:var(--rose); }
+.chip .px{ color:var(--gris); font-size:12px; }
+.chip.actif{ background:var(--rose); color:#fff; border-color:var(--rose); }
+.chip.actif .px{ color:#FCE3EA; }
+.chip.actif::before{ content:"\2713"; font-size:12px; }
+
+.recap{
+  background:#fff; border:1px solid #efe9e4; border-radius:var(--rayon);
+  padding:26px 24px; position:sticky; top:92px;
+}
+.recap h3{ font-size:20px; margin-bottom:4px; }
+.recap .recap-type{ color:var(--rose); font-size:13px; text-transform:uppercase; letter-spacing:1px; margin-bottom:16px; }
+.recap-liste{ list-style:none; max-height:230px; overflow:auto; }
+.recap-liste li{
+  display:flex; justify-content:space-between; font-size:14px; color:#403a37;
+  padding:7px 0; border-bottom:1px dashed #efe9e4;
+}
+.recap-liste li span:last-child{ color:var(--rose); }
+.recap-vide{ color:var(--gris); font-size:14px; font-style:italic; padding:8px 0; }
+.recap-total{
+  display:flex; justify-content:space-between; align-items:baseline;
+  margin:18px 0; padding-top:16px; border-top:2px solid var(--rose-clair);
+}
+.recap-total span{ font-size:15px; color:var(--gris); }
+.recap-total b{ font-family:var(--titre); font-size:34px; color:var(--rose); font-weight:700; }
+.recap .btn{ width:100%; justify-content:center; }
+.recap-reset{
+  width:100%; text-align:center; margin-top:10px; background:none; border:none;
+  color:var(--gris); cursor:pointer; font-size:13px; font-family:var(--texte); text-decoration:underline;
+}
+
 /* ============================================================
    RESPONSIVE — MOBILE
    ============================================================ */
@@ -350,7 +433,7 @@ h1,h2,h3{ font-family:var(--titre); font-weight:600; line-height:1.15; }
   .hero-visuel{ order:-1; margin-bottom:14px; }
   .disque{ width:230px; height:230px; font-size:104px; }
 
-  .etapes, .cats, .plats, .avis, .pied-haut, .contact{ grid-template-columns:1fr; }
+  .etapes, .cats, .plats, .avis, .pied-haut, .contact, .compo-layout{ grid-template-columns:1fr; }
   .galerie{ grid-template-columns:repeat(2,1fr); }
   .menu-liste{ grid-template-columns:1fr; gap:0; }
   .section-tete h2{ font-size:30px; }
@@ -358,6 +441,8 @@ h1,h2,h3{ font-family:var(--titre); font-weight:600; line-height:1.15; }
   .section{ padding:60px 0; }
   .formule{ flex-direction:column; text-align:center; }
   .pied-bas{ justify-content:center; text-align:center; }
+  .recap{ position:static; }
+  .menu-vignette{ display:none; }
 }
 
 @media (max-width:480px){

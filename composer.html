@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Composez votre crêpe — My Crêpe Argenteuil</title>
+<meta name="description" content="Composez votre crêpe sur mesure chez My Crêpe Argenteuil : choisissez la base, les garnitures et voyez le prix en direct.">
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.7.0/dist/tabler-icons.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="annonce">
+  <i class="ti ti-moon-stars"></i>&nbsp; Ouvert jusqu'à <b>04h00</b> &nbsp;·&nbsp; 100% <b>Halal</b> &nbsp;·&nbsp; Livraison à <b>Argenteuil</b>
+</div>
+
+<header class="entete">
+  <div class="wrap">
+    <a href="index.html" class="logo">
+      <span class="pastille"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 6 L26.5 24 Q16 20.5 5.5 24 Z" fill="#FBEDF1"/><circle cx="13" cy="17.5" r="1.5" fill="#C14B6E"/><circle cx="18.2" cy="18.8" r="1.5" fill="#C14B6E"/><circle cx="15.4" cy="20.8" r="1.3" fill="#C14B6E"/></svg></span>
+      My <span>Crêpe</span>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="index.html">Accueil</a>
+      <a href="index.html#concept">Concept</a>
+      <a href="menu.html">La carte</a>
+      <a href="composer.html" class="actif">Composer</a>
+      <a href="index.html#avis">Avis</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <a href="index.html#contact" class="btn btn-plein" style="padding:11px 22px; font-size:14px;"><i class="ti ti-moped"></i> Commander</a>
+    <button class="burger" id="burger" aria-label="Menu"><i class="ti ti-menu-2"></i></button>
+  </div>
+</header>
+
+<section class="compo-hero">
+  <p class="eyebrow">Atelier crêpe</p>
+  <h1>Composez <em>votre</em> crêpe</h1>
+  <p>Choisissez votre base puis ajoutez vos garnitures préférées. Le prix se calcule en direct.</p>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="compo-layout">
+
+      <div>
+        <div class="type-toggle">
+          <button class="type-btn actif" data-type="sucree"><i class="ti ti-ice-cream-2"></i> Crêpe sucrée</button>
+          <button class="type-btn" data-type="salee"><i class="ti ti-meat"></i> Crêpe salée</button>
+        </div>
+        <div id="groupes"></div>
+      </div>
+
+      <aside class="recap">
+        <h3>Votre crêpe</h3>
+        <div class="recap-type" id="recap-type">Crêpe sucrée · base incluse</div>
+        <ul class="recap-liste" id="recap-liste"></ul>
+        <div class="recap-total">
+          <span>Total</span>
+          <b id="recap-total">4,00 €</b>
+        </div>
+        <a class="btn btn-plein" href="https://www.ubereats.com/fr/store/my-crepe/WxncpuxRS8ymZy_Ar0WDsQ" target="_blank" rel="noopener"><i class="ti ti-moped"></i> Commander sur Uber Eats</a>
+        <button class="recap-reset" id="reset">Tout réinitialiser</button>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<footer class="pied">
+  <div class="wrap">
+    <div class="pied-bas" style="border-top:none; padding-top:0;">
+      <span>© 2026 My Crêpe — Argenteuil. Tous droits réservés.</span>
+      <span><a href="index.html">Retour à l'accueil</a> · <a href="menu.html">La carte</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const nav = document.getElementById('nav');
+  burger.addEventListener('click', () => nav.classList.toggle('ouvert'));
+
+  /* ---- Données du composeur (modifiez prix/ingrédients ici) ---- */
+  const DATA = {
+    sucree: {
+      base: 4.00, label: 'Crêpe sucrée',
+      groupes: [
+        { titre:'Pâtes à tartiner', icone:'ti-droplet', items:[['Nutella',0],['Spéculoos',0.50],['Caramel beurre salé',0.50],['Confiture',0],['Beurre de cacahuète',0.50]] },
+        { titre:'Fruits', icone:'ti-apple', items:[['Banane',1.00],['Fraise',1.50],['Pomme',1.00],['Poire',1.00]] },
+        { titre:'Gourmandises', icone:'ti-candy', items:[['Kinder Bueno',1.50],['Oreo',1.00],['M&Ms',1.00],['Chantilly',0.50],['Éclats de noisette',1.00],['Noix de coco',0.50]] }
+      ]
+    },
+    salee: {
+      base: 6.50, label: 'Crêpe salée',
+      groupes: [
+        { titre:'Viandes & poisson', icone:'ti-meat', items:[['Poulet',1.50],['Viande hachée',1.50],['Jambon de dinde',1.00],['Thon',1.50]] },
+        { titre:'Fromages', icone:'ti-cheese', items:[['Mozzarella',1.00],['Emmental',1.00],['Chèvre',1.50],['Sauce fromagère',0.50]] },
+        { titre:'Légumes & œuf', icone:'ti-salad', items:[['Champignons',0.80],['Oignons',0.50],['Poivrons',0.80],['Olives',0.50],['Œuf',1.00]] },
+        { titre:'Sauces (offertes)', icone:'ti-droplet', items:[['Algérienne',0],['Barbecue',0],['Samouraï',0],['Blanche',0]] }
+      ]
+    }
+  };
+
+  let typeActuel = 'sucree';
+  const choix = new Set();
+
+  const euro = n => n.toFixed(2).replace('.', ',') + ' €';
+  const groupesEl = document.getElementById('groupes');
+  const recapListe = document.getElementById('recap-liste');
+  const recapTotal = document.getElementById('recap-total');
+  const recapType  = document.getElementById('recap-type');
+
+  function rendreGroupes(){
+    const d = DATA[typeActuel];
+    groupesEl.innerHTML = d.groupes.map(g => `
+      <div class="ing-group">
+        <h3><i class="ti ${g.icone}"></i> ${g.titre}</h3>
+        <div class="ing-chips">
+          ${g.items.map(([nom, prix]) => `
+            <button class="chip" data-nom="${nom}" data-prix="${prix}">
+              ${nom} <span class="px">${prix > 0 ? '+ '+euro(prix) : 'offert'}</span>
+            </button>`).join('')}
+        </div>
+      </div>`).join('');
+    groupesEl.querySelectorAll('.chip').forEach(c => {
+      c.addEventListener('click', () => {
+        const cle = c.dataset.nom + '|' + c.dataset.prix;
+        if(choix.has(cle)){ choix.delete(cle); c.classList.remove('actif'); }
+        else { choix.add(cle); c.classList.add('actif'); }
+        majRecap();
+      });
+    });
+  }
+
+  function majRecap(){
+    const d = DATA[typeActuel];
+    let total = d.base;
+    recapType.textContent = d.label + ' · base incluse';
+    let lignes = `<li><span>Base ${d.label.toLowerCase()}</span><span>${euro(d.base)}</span></li>`;
+    if(choix.size === 0){
+      lignes += `<li class="recap-vide" style="border:none;">Ajoutez vos garnitures…</li>`;
+    } else {
+      choix.forEach(cle => {
+        const [nom, prix] = cle.split('|');
+        const p = parseFloat(prix);
+        total += p;
+        lignes += `<li><span>${nom}</span><span>${p > 0 ? euro(p) : 'offert'}</span></li>`;
+      });
+    }
+    recapListe.innerHTML = lignes;
+    recapTotal.textContent = euro(total);
+  }
+
+  document.querySelectorAll('.type-btn').forEach(b => {
+    b.addEventListener('click', () => {
+      if(b.dataset.type === typeActuel) return;
+      document.querySelectorAll('.type-btn').forEach(x => x.classList.remove('actif'));
+      b.classList.add('actif');
+      typeActuel = b.dataset.type;
+      choix.clear();
+      rendreGroupes();
+      majRecap();
+    });
+  });
+
+  document.getElementById('reset').addEventListener('click', () => {
+    choix.clear();
+    groupesEl.querySelectorAll('.chip.actif').forEach(c => c.classList.remove('actif'));
+    majRecap();
+  });
+
+  rendreGroupes();
+  majRecap();
+</script>
+</body>
+</html>

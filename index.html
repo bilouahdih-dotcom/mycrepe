@@ -34,6 +34,7 @@
       <a href="index.html" class="actif">Accueil</a>
       <a href="#concept">Concept</a>
       <a href="menu.html">La carte</a>
+      <a href="composer.html">Composer</a>
       <a href="#avis">Avis</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -50,7 +51,7 @@
       <h1>Composez la crêpe <em>de vos rêves.</em></h1>
       <p>Salée ou sucrée, piochez vos ingrédients parmi plus de 40 garnitures. Paninis, croque-monsieur, smoothies & milkshakes préparés minute.</p>
       <div class="hero-actions">
-        <a href="menu.html" class="btn btn-plein"><i class="ti ti-tools-kitchen-2"></i> Composer ma crêpe</a>
+        <a href="composer.html" class="btn btn-plein"><i class="ti ti-tools-kitchen-2"></i> Composer ma crêpe</a>
         <a href="menu.html" class="btn btn-ligne">Voir la carte</a>
       </div>
       <div class="hero-meta">
@@ -242,11 +243,9 @@
       </div>
       <div class="contact-carte">
         <h3>Commandez en livraison</h3>
-        <p>Ouvert tard et livré à Argenteuil et alentours. Choisissez votre plateforme préférée :</p>
+        <p>Ouvert tard et livré à Argenteuil et alentours. Commandez en quelques clics sur Uber Eats :</p>
         <div class="livraison">
-          <a class="livr-btn" href="https://www.ubereats.com/fr/store/my-crepe/WxncpuxRS8ymZy_Ar0WDsQ" target="_blank" rel="noopener"><span class="livr-pastille uber"><i class="ti ti-moped"></i></span> Uber Eats <small>Livraison</small></a>
-          <a class="livr-btn" href="https://deliveroo.fr/fr/menu/paris/argenteuil-centre-ville/my-crepe-rue-paul" target="_blank" rel="noopener"><span class="livr-pastille deliveroo"><i class="ti ti-bike"></i></span> Deliveroo <small>Livraison</small></a>
-          <a class="livr-btn" href="https://www.just-eat.fr/menu/my-crepe-argenteuil" target="_blank" rel="noopener"><span class="livr-pastille justeat"><i class="ti ti-tools-kitchen-2"></i></span> Just Eat <small>Livraison</small></a>
+          <a class="livr-btn" href="https://www.ubereats.com/fr/store/my-crepe/WxncpuxRS8ymZy_Ar0WDsQ" target="_blank" rel="noopener"><span class="livr-pastille uber"><i class="ti ti-moped"></i></span> Commander sur Uber Eats <small>Livraison</small></a>
         </div>
       </div>
     </div>
@@ -280,8 +279,8 @@
         <h4>Commander</h4>
         <ul>
           <li><a href="https://www.ubereats.com/fr/store/my-crepe/WxncpuxRS8ymZy_Ar0WDsQ" target="_blank" rel="noopener">Uber Eats</a></li>
-          <li><a href="https://deliveroo.fr/fr/menu/paris/argenteuil-centre-ville/my-crepe-rue-paul" target="_blank" rel="noopener">Deliveroo</a></li>
-          <li><a href="https://www.just-eat.fr/menu/my-crepe-argenteuil" target="_blank" rel="noopener">Just Eat</a></li>
+          <li><a href="composer.html">Composer ma crêpe</a></li>
+          <li><a href="menu.html">Voir la carte</a></li>
         </ul>
       </div>
       <div>
@@ -300,11 +299,34 @@
   </div>
 </footer>
 
+<!-- Lightbox galerie -->
+<div class="lightbox" id="lightbox">
+  <button class="fermer" id="lb-fermer" aria-label="Fermer">&times;</button>
+  <img id="lb-img" src="" alt="">
+</div>
+
 <script>
   const burger = document.getElementById('burger');
   const nav = document.getElementById('nav');
   burger.addEventListener('click', () => nav.classList.toggle('ouvert'));
   nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('ouvert')));
+
+  /* Lightbox : clic sur une photo de la galerie pour l'agrandir */
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lb-img');
+  document.querySelectorAll('.galerie a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const img = a.querySelector('img');
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lb.classList.add('ouvert');
+    });
+  });
+  function fermerLb(){ lb.classList.remove('ouvert'); }
+  document.getElementById('lb-fermer').addEventListener('click', fermerLb);
+  lb.addEventListener('click', e => { if(e.target === lb) fermerLb(); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') fermerLb(); });
 </script>
 </body>
 </html>

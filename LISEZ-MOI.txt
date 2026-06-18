@@ -7,8 +7,9 @@ CONTENU DU DOSSIER
 ------------------
   index.html ......... La page d'accueil
   menu.html .......... La carte complète avec les prix
+  composer.html ...... Le composeur de crêpe interactif (prix en direct)
   css/style.css ...... Le design (couleurs, polices, mise en page)
-  assets/ ............ Mettez vos photos ici
+  assets/ ............ Les photos et le logo
 
 POUR VOIR LE SITE
 -----------------
@@ -60,10 +61,14 @@ POUR VOIR LE SITE
 7) GOOGLE MAPS
    Déjà intégré en bas de la page d'accueil (adresse réelle).
 
-8) LIVRAISON (Uber Eats / Deliveroo / Just Eat)
-   Les 3 boutons sont dans la page d'accueil (bloc rose "Commander")
-   et dans le pied de page. IMPORTANT : cliquez sur chacun pour
-   vérifier qu'il ouvre bien la VRAIE page du restaurant.
+8) LIVRAISON — UBER EATS
+   Bouton dans la page d'accueil (bloc rose "Commander") et dans le
+   pied de page. (Le resto n'est PAS sur Deliveroo / Just Eat.)
+
+9) COMPOSEUR DE CRÊPE (composer.html)
+   Page interactive : le client choisit base + garnitures, le prix
+   s'affiche en direct. Pour modifier les ingrédients et les prix,
+   ouvrez composer.html et cherchez la zone "const DATA = {".
 
 
 ==================================================
