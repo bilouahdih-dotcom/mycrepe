@@ -234,6 +234,20 @@ h1,h2,h3{ font-family:var(--titre); font-weight:600; line-height:1.15; }
 .info-ligne i{ color:var(--rose); font-size:22px; margin-top:2px; }
 .info-ligne b{ font-weight:600; display:block; }
 .info-ligne span{ color:var(--gris); }
+/* Numéro de téléphone cliquable (appel direct) */
+.tel-link{ color:inherit; text-decoration:none; transition:color .2s; }
+.tel-link:hover{ color:var(--rose); }
+.pied .tel-link:hover{ color:var(--rose-pastel); }
+.num-contact{ color:var(--rose); font-weight:500; }
+.num-contact:hover{ text-decoration:underline; }
+.btn-appel{
+  display:inline-flex; align-items:center; gap:9px; margin-top:22px;
+  padding:12px 22px; border-radius:40px; border:1.5px solid var(--rose-pastel);
+  color:var(--rose-fonce); font-size:15px; font-weight:500; transition:.2s;
+}
+.btn-appel:hover{ background:var(--rose); color:#fff; border-color:var(--rose); transform:translateY(-2px); }
+.btn-appel i{ font-size:19px; }
+
 .socials{ display:flex; gap:10px; margin-top:26px; }
 .socials a{
   width:44px; height:44px; border-radius:50%; background:var(--rose-clair);
