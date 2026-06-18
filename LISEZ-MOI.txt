@@ -1,0 +1,62 @@
+==================================================
+  SITE MY CRÊPE — Argenteuil
+  Guide rapide pour modifier le site
+==================================================
+
+CONTENU DU DOSSIER
+------------------
+  index.html ......... La page d'accueil
+  menu.html .......... La carte complète avec les prix
+  css/style.css ...... Le design (couleurs, polices, mise en page)
+  assets/ ............ Mettez vos photos ici
+
+POUR VOIR LE SITE
+-----------------
+  Double-cliquez sur "index.html" : il s'ouvre dans votre navigateur.
+  (Connexion internet nécessaire la 1re fois pour les polices et icônes.)
+
+
+==================================================
+  COMMENT MODIFIER — c'est simple
+==================================================
+
+1) CHANGER LES COULEURS
+   Ouvrez  css/style.css  avec le Bloc-notes.
+   Tout en haut, dans la zone ":root", changez les codes couleur :
+       --rose:        #C14B6E;   <- couleur principale
+       --rose-clair:  #FBEDF1;   <- fond rose pâle
+   Enregistrez, rafraîchissez la page. C'est tout.
+
+2) CHANGER LES TEXTES / TITRES
+   Ouvrez  index.html  ou  menu.html  avec le Bloc-notes.
+   Modifiez le texte entre les balises, ex :
+       <h1>Composez la crêpe ...</h1>
+   Ne touchez pas aux < > autour.
+
+3) CHANGER LES PRIX  (page carte)
+   Dans  menu.html , cherchez les prix (ex : 8,00 €) et remplacez-les.
+
+4) AJOUTER VOS PHOTOS
+   - Mettez vos images dans le dossier  assets/
+   - Dans index.html, section "GALERIE", remplacez par exemple :
+        <div class="g1"><i class="ti ti-camera"></i></div>
+     par :
+        <div class="g1"><img src="assets/ma-photo.jpg" alt="crêpe"></div>
+
+5) RÉSEAUX SOCIAUX
+   Dans index.html, section "socials", remplacez les href="#"
+   par vos vrais liens Instagram / Snap / TikTok.
+
+
+==================================================
+  À VÉRIFIER / CONFIRMER AVEC LE CLIENT
+==================================================
+  - Téléphone : deux numéros trouvés en ligne
+       01 39 61 91 87  /  01 34 10 12 27
+  - Horaires exacts (plusieurs sources se contredisent)
+  - Les PRIX du menu sont des estimations -> à valider
+  - Vrais comptes Instagram / Snapchat / TikTok
+  - Logo officiel (remplacer la pastille ronde actuelle)
+  - Vraies photos des crêpes
+
+Bon appétit ! 🥞

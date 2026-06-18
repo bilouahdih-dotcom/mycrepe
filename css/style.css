@@ -1,0 +1,340 @@
+/* ============================================================
+   MY CRÊPE — Argenteuil
+   Feuille de style principale
+   ------------------------------------------------------------
+   POUR MODIFIER LE SITE, COMMENCE ICI 👇
+   Change une valeur dans :root et toute la page se met à jour.
+   ============================================================ */
+
+:root{
+  /* ---- COULEURS (modifie-les ici) ---- */
+  --rose:        #C14B6E;   /* rose principal (boutons, titres accent) */
+  --rose-fonce:  #7A2740;   /* rose foncé (textes sur fond clair)      */
+  --rose-clair:  #FBEDF1;   /* rose très pâle (fonds de sections)      */
+  --rose-pastel: #F3C9D6;   /* rose pastel (bordures, puces)           */
+  --noir:        #26211F;   /* texte principal / fond foncé            */
+  --gris:        #6E6A66;   /* texte secondaire                        */
+  --gris-clair:  #F5F2EE;   /* fond crème                              */
+  --blanc:       #FFFFFF;
+  --or:          #C9A24B;   /* petit accent doré (étoiles, détails)    */
+
+  /* ---- TYPOGRAPHIE ---- */
+  --titre: 'Playfair Display', Georgia, serif;  /* titres élégants */
+  --texte: 'Jost', 'Segoe UI', sans-serif;      /* texte courant   */
+
+  /* ---- DIVERS ---- */
+  --rayon: 16px;            /* arrondi des cartes */
+  --max:   1160px;          /* largeur max du contenu */
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  font-family:var(--texte);
+  color:var(--noir);
+  background:var(--blanc);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+h1,h2,h3{ font-family:var(--titre); font-weight:600; line-height:1.15; }
+
+.wrap{ width:100%; max-width:var(--max); margin:0 auto; padding:0 26px; }
+.center{ text-align:center; }
+
+.eyebrow{
+  font-size:13px; letter-spacing:3px; text-transform:uppercase;
+  color:var(--rose); font-weight:500; margin-bottom:14px;
+}
+.lead{ color:var(--gris); font-size:17px; max-width:620px; }
+
+/* boutons */
+.btn{
+  display:inline-flex; align-items:center; gap:9px;
+  font-family:var(--texte); font-size:15px; font-weight:500;
+  padding:14px 28px; border-radius:40px; cursor:pointer;
+  border:1.5px solid transparent; transition:.25s; white-space:nowrap;
+}
+.btn-plein{ background:var(--rose); color:#fff; }
+.btn-plein:hover{ background:var(--rose-fonce); transform:translateY(-2px); }
+.btn-ligne{ background:transparent; color:var(--rose-fonce); border-color:var(--rose-pastel); }
+.btn-ligne:hover{ background:var(--rose-clair); }
+.btn-blanc{ background:#fff; color:var(--rose-fonce); }
+.btn-blanc:hover{ transform:translateY(-2px); }
+
+/* ============================================================
+   BANDEAU ANNONCE + HEADER
+   ============================================================ */
+.annonce{
+  background:var(--noir); color:#F1E4E8; font-size:13px;
+  letter-spacing:1px; text-align:center; padding:9px 16px;
+}
+.annonce b{ color:var(--rose-pastel); font-weight:500; }
+
+.entete{
+  position:sticky; top:0; z-index:50;
+  background:rgba(255,255,255,.92); backdrop-filter:blur(8px);
+  border-bottom:1px solid #efe9e4;
+}
+.entete .wrap{ display:flex; align-items:center; justify-content:space-between; height:74px; }
+.logo{ display:flex; align-items:center; gap:11px; font-family:var(--titre); font-size:25px; font-weight:700; }
+.logo .pastille{
+  width:40px; height:40px; border-radius:50%; background:var(--rose);
+  color:#fff; display:flex; align-items:center; justify-content:center; font-size:22px;
+}
+.logo span{ color:var(--rose); }
+.nav{ display:flex; gap:30px; font-size:15px; }
+.nav a{ color:var(--gris); transition:.2s; position:relative; }
+.nav a:hover, .nav a.actif{ color:var(--rose); }
+.burger{ display:none; font-size:26px; color:var(--noir); background:none; border:none; cursor:pointer; }
+
+/* ============================================================
+   HÉRO
+   ============================================================ */
+.hero{ background:var(--rose-clair); overflow:hidden; }
+.hero .wrap{ display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center; padding:70px 26px 80px; }
+.hero h1{ font-size:58px; color:var(--rose-fonce); }
+.hero h1 em{ font-style:italic; color:var(--rose); }
+.hero p{ margin:20px 0 30px; color:var(--rose-fonce); font-size:18px; max-width:440px; opacity:.9; }
+.hero-actions{ display:flex; gap:14px; flex-wrap:wrap; }
+.hero-meta{ display:flex; gap:26px; margin-top:32px; font-size:14px; color:var(--rose-fonce); flex-wrap:wrap; }
+.hero-meta i{ color:var(--rose); }
+.hero-meta b{ font-weight:600; }
+
+.hero-visuel{ display:flex; align-items:center; justify-content:center; position:relative; }
+.disque{
+  width:330px; height:330px; border-radius:50%; background:var(--rose);
+  display:flex; align-items:center; justify-content:center; color:var(--rose-clair);
+  font-size:150px; position:relative;
+  box-shadow:0 30px 60px -20px rgba(193,75,110,.5);
+}
+.disque::before{
+  content:""; position:absolute; inset:-18px; border-radius:50%;
+  border:2px dashed var(--rose-pastel);
+}
+.badge-flottant{
+  position:absolute; background:#fff; border-radius:40px; padding:11px 18px;
+  font-size:13px; font-weight:500; color:var(--rose-fonce);
+  box-shadow:0 14px 30px -12px rgba(0,0,0,.25); display:flex; align-items:center; gap:8px;
+}
+.badge-flottant i{ color:var(--rose); font-size:17px; }
+.badge-1{ top:18px; left:-6px; }
+.badge-2{ bottom:26px; right:-10px; }
+
+/* ============================================================
+   BANDEAU DÉFILANT
+   ============================================================ */
+.marquee{ background:var(--noir); color:#fff; overflow:hidden; padding:16px 0; }
+.marquee-piste{ display:flex; gap:46px; white-space:nowrap; animation:defile 24s linear infinite; }
+.marquee span{ font-family:var(--titre); font-style:italic; font-size:20px; opacity:.85; display:flex; align-items:center; gap:46px; }
+.marquee span::after{ content:"✶"; color:var(--rose); font-style:normal; }
+@keyframes defile{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+
+/* ============================================================
+   SECTIONS GÉNÉRIQUES
+   ============================================================ */
+.section{ padding:84px 0; }
+.section.creme{ background:var(--gris-clair); }
+.section-tete{ max-width:640px; margin:0 auto 50px; }
+.section-tete h2{ font-size:40px; }
+.section-tete .lead{ margin:16px auto 0; }
+
+/* ÉTAPES (concept) */
+.etapes{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.etape{
+  background:#fff; border:1px solid #efe9e4; border-radius:var(--rayon);
+  padding:34px 26px; text-align:center; position:relative; transition:.25s;
+}
+.etape:hover{ transform:translateY(-6px); box-shadow:0 24px 44px -28px rgba(193,75,110,.5); }
+.etape .num{
+  width:54px; height:54px; margin:0 auto 18px; border-radius:50%;
+  background:var(--rose-clair); color:var(--rose); display:flex;
+  align-items:center; justify-content:center; font-family:var(--titre);
+  font-size:24px; font-weight:700;
+}
+.etape h3{ font-size:22px; margin-bottom:8px; }
+.etape p{ color:var(--gris); font-size:15px; }
+
+/* CARTES CATÉGORIES */
+.cats{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+.cat{
+  border-radius:var(--rayon); padding:30px 24px; text-align:center;
+  background:#fff; border:1px solid #efe9e4; transition:.25s;
+}
+.cat:hover{ background:var(--rose); color:#fff; transform:translateY(-6px); }
+.cat:hover p, .cat:hover .cat-ico{ color:#fff; }
+.cat:hover .cat-ico{ background:rgba(255,255,255,.18); }
+.cat-ico{
+  width:64px; height:64px; margin:0 auto 16px; border-radius:50%;
+  background:var(--rose-clair); color:var(--rose); display:flex;
+  align-items:center; justify-content:center; font-size:30px; transition:.25s;
+}
+.cat h3{ font-size:21px; margin-bottom:6px; }
+.cat p{ font-size:14px; color:var(--gris); transition:.25s; }
+
+/* SIGNATURES (menu aperçu) */
+.plats{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.plat{
+  background:#fff; border:1px solid #efe9e4; border-radius:var(--rayon);
+  overflow:hidden; transition:.25s;
+}
+.plat:hover{ transform:translateY(-6px); box-shadow:0 24px 44px -28px rgba(0,0,0,.25); }
+.plat-img{
+  height:140px; background:var(--rose-clair); display:flex;
+  align-items:center; justify-content:center; color:var(--rose); font-size:54px;
+}
+.plat-corps{ padding:20px 22px; }
+.plat-corps .ligne{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; }
+.plat-corps h3{ font-size:21px; }
+.plat-corps .prix{ font-family:var(--titre); font-size:21px; color:var(--rose); white-space:nowrap; }
+.plat-corps p{ color:var(--gris); font-size:14px; margin-top:6px; }
+.etiquette{
+  display:inline-block; background:var(--rose-clair); color:var(--rose-fonce);
+  font-size:11px; letter-spacing:1px; text-transform:uppercase; font-weight:500;
+  padding:4px 11px; border-radius:30px; margin-top:12px;
+}
+
+/* GALERIE */
+.galerie{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+.galerie div{
+  aspect-ratio:1; border-radius:14px; display:flex; align-items:center;
+  justify-content:center; font-size:42px; color:#fff;
+}
+.g1{ background:#C14B6E; } .g2{ background:#7A2740; }
+.g3{ background:#D98AA3; } .g4{ background:#26211F; }
+.g5{ background:#7A2740; } .g6{ background:#D98AA3; }
+.g7{ background:#26211F; } .g8{ background:#C14B6E; }
+
+/* AVIS */
+.avis{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.avis-carte{
+  background:#fff; border:1px solid #efe9e4; border-radius:var(--rayon);
+  padding:28px 26px;
+}
+.etoiles{ color:var(--or); font-size:18px; margin-bottom:14px; letter-spacing:2px; }
+.avis-carte p{ font-size:15px; color:#403a37; font-style:italic; }
+.avis-auteur{ display:flex; align-items:center; gap:12px; margin-top:18px; }
+.avis-auteur .rond{
+  width:42px; height:42px; border-radius:50%; background:var(--rose);
+  color:#fff; display:flex; align-items:center; justify-content:center; font-weight:600;
+}
+.avis-auteur b{ font-weight:600; display:block; font-size:15px; }
+.avis-auteur small{ color:var(--gris); }
+
+/* INFOS / CONTACT */
+.contact{ display:grid; grid-template-columns:1fr 1fr; gap:0; border-radius:var(--rayon); overflow:hidden; border:1px solid #efe9e4; }
+.contact-infos{ padding:46px 44px; }
+.contact-infos h2{ font-size:34px; margin-bottom:24px; }
+.info-ligne{ display:flex; gap:14px; align-items:flex-start; margin-bottom:18px; font-size:15px; }
+.info-ligne i{ color:var(--rose); font-size:22px; margin-top:2px; }
+.info-ligne b{ font-weight:600; display:block; }
+.info-ligne span{ color:var(--gris); }
+.socials{ display:flex; gap:10px; margin-top:26px; }
+.socials a{
+  width:44px; height:44px; border-radius:50%; background:var(--rose-clair);
+  color:var(--rose); display:flex; align-items:center; justify-content:center;
+  font-size:20px; transition:.25s;
+}
+.socials a:hover{ background:var(--rose); color:#fff; }
+.contact-carte{
+  background:var(--rose); color:#fff; padding:46px 44px;
+  display:flex; flex-direction:column; justify-content:center;
+}
+.contact-carte h3{ font-size:30px; color:#fff; }
+.contact-carte p{ margin:14px 0 24px; color:#FCE3EA; font-size:16px; }
+.map-faux{
+  margin-top:24px; height:120px; border-radius:12px;
+  background:rgba(255,255,255,.15); display:flex; align-items:center;
+  justify-content:center; gap:10px; font-size:15px;
+}
+
+/* ============================================================
+   PIED DE PAGE
+   ============================================================ */
+.pied{ background:var(--noir); color:#cdbfc4; padding:56px 0 26px; }
+.pied-haut{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px; padding-bottom:36px; border-bottom:1px solid #41383a; }
+.pied .logo{ color:#fff; margin-bottom:14px; }
+.pied .logo span{ color:var(--rose-pastel); }
+.pied h4{ color:#fff; font-size:15px; letter-spacing:1px; text-transform:uppercase; margin-bottom:16px; font-weight:500; }
+.pied ul{ list-style:none; }
+.pied ul li{ margin-bottom:9px; font-size:14px; }
+.pied ul a:hover{ color:var(--rose-pastel); }
+.pied-bas{ display:flex; justify-content:space-between; padding-top:22px; font-size:13px; color:#8a7d80; flex-wrap:wrap; gap:8px; }
+
+/* ============================================================
+   PAGE CARTE (menu.html)
+   ============================================================ */
+.carte-hero{ background:var(--noir); color:#fff; text-align:center; padding:70px 26px 60px; }
+.carte-hero h1{ font-size:50px; color:#fff; }
+.carte-hero h1 em{ font-style:italic; color:var(--rose-pastel); }
+.carte-hero p{ color:#d6c7cc; margin-top:14px; }
+.note-prix{
+  background:var(--rose-clair); color:var(--rose-fonce); text-align:center;
+  font-size:13px; padding:12px 16px;
+}
+
+.menu-bloc{ margin-bottom:64px; }
+.menu-titre{ display:flex; align-items:center; gap:16px; margin-bottom:8px; }
+.menu-titre i{ color:var(--rose); font-size:30px; }
+.menu-titre h2{ font-size:34px; }
+.menu-sous{ color:var(--gris); margin-bottom:30px; font-size:15px; }
+
+.menu-liste{ display:grid; grid-template-columns:1fr 1fr; gap:6px 50px; }
+.menu-item{
+  display:flex; align-items:baseline; gap:10px; padding:14px 0;
+  border-bottom:1px dashed #e4ddd7;
+}
+.menu-item .nom{ font-weight:500; font-size:16px; white-space:nowrap; }
+.menu-item .desc{ color:var(--gris); font-size:13px; }
+.menu-item .points{ flex:1; border-bottom:1px dotted #cfc7c0; transform:translateY(-4px); }
+.menu-item .p{ font-family:var(--titre); font-size:18px; color:var(--rose); font-weight:600; white-space:nowrap; }
+.tag-pop{ font-size:10px; background:var(--rose); color:#fff; padding:2px 8px; border-radius:20px; letter-spacing:1px; margin-left:6px; vertical-align:middle; }
+
+.formule{
+  background:var(--rose); color:#fff; border-radius:var(--rayon);
+  padding:38px 40px; display:flex; align-items:center; justify-content:space-between;
+  gap:24px; flex-wrap:wrap; margin-top:30px;
+}
+.formule h3{ color:#fff; font-size:28px; }
+.formule p{ color:#FCE3EA; margin-top:6px; }
+.formule .gros-prix{ font-family:var(--titre); font-size:46px; font-weight:700; }
+
+/* ============================================================
+   RESPONSIVE — MOBILE
+   ============================================================ */
+@media (max-width:900px){
+  .nav{
+    display:none; position:absolute; top:74px; left:0; right:0;
+    flex-direction:column; gap:0; background:#fff; border-bottom:1px solid #efe9e4;
+    padding:8px 0;
+  }
+  .nav.ouvert{ display:flex; }
+  .nav a{ padding:14px 26px; }
+  .burger{ display:block; }
+
+  .hero .wrap{ grid-template-columns:1fr; text-align:center; padding:50px 26px 60px; }
+  .hero h1{ font-size:42px; }
+  .hero p{ margin-left:auto; margin-right:auto; }
+  .hero-actions, .hero-meta{ justify-content:center; }
+  .hero-visuel{ order:-1; margin-bottom:14px; }
+  .disque{ width:230px; height:230px; font-size:104px; }
+
+  .etapes, .cats, .plats, .avis, .pied-haut, .contact{ grid-template-columns:1fr; }
+  .galerie{ grid-template-columns:repeat(2,1fr); }
+  .menu-liste{ grid-template-columns:1fr; gap:0; }
+  .section-tete h2{ font-size:30px; }
+  .hero h1{ font-size:38px; }
+  .section{ padding:60px 0; }
+  .formule{ flex-direction:column; text-align:center; }
+  .pied-bas{ justify-content:center; text-align:center; }
+}
+
+@media (max-width:480px){
+  .wrap{ padding:0 18px; }
+  .hero h1{ font-size:32px; }
+  .galerie{ grid-template-columns:repeat(2,1fr); }
+}
