@@ -266,10 +266,24 @@ h1,h2,h3{ font-family:var(--titre); font-weight:600; line-height:1.15; }
   background:rgba(255,255,255,.15); display:flex; align-items:center;
   justify-content:center; gap:10px; font-size:15px;
 }
-.map-embed{
-  margin-top:26px; width:100%; height:360px; border:0;
-  border-radius:var(--rayon); display:block; filter:grayscale(.15);
+/* ---- Carte interactive (Leaflet) ---- */
+.map-card{
+  margin-top:26px; border:1px solid #efe9e4; border-radius:var(--rayon);
+  overflow:hidden; background:#fff;
 }
+#map{ height:380px; width:100%; z-index:1; background:#eee; }
+.map-foot{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:14px; padding:16px 20px; flex-wrap:wrap;
+}
+.map-foot .adr{ display:flex; align-items:center; gap:10px; font-size:14px; color:#403a37; }
+.map-foot .adr i{ color:var(--rose); font-size:20px; }
+.map-actions{ display:flex; gap:10px; flex-wrap:wrap; }
+.map-actions .btn{ padding:10px 18px; font-size:14px; }
+.pin-wrap{ filter:drop-shadow(0 6px 8px rgba(122,39,64,.35)); }
+.leaflet-popup-content-wrapper{ border-radius:12px; }
+.leaflet-popup-content{ font-family:var(--texte); font-size:13px; line-height:1.5; color:var(--noir); }
+.leaflet-container{ font-family:var(--texte); }
 
 /* ---- Carte "Votre trajet" (géolocalisation) ---- */
 .trajet{

@@ -13,6 +13,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <!-- Icônes Tabler -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.7.0/dist/tabler-icons.min.css">
+<!-- Leaflet (carte) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <!-- Style du site -->
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -292,7 +294,16 @@
       </div>
     </div>
 
-    <iframe class="map-embed" src="https://www.google.com/maps?q=136%20rue%20Paul%20Vaillant%20Couturier%2C%2095100%20Argenteuil&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Carte My Crêpe Argenteuil"></iframe>
+    <div class="map-card">
+      <div id="map" role="img" aria-label="Carte de localisation de My Crêpe à Argenteuil"></div>
+      <div class="map-foot">
+        <span class="adr"><i class="ti ti-map-pin"></i> 136 rue Paul Vaillant Couturier, 95100 Argenteuil</span>
+        <span class="map-actions">
+          <a class="btn btn-ligne" href="https://www.google.com/maps/dir/?api=1&destination=48.9445403,2.2514258" target="_blank" rel="noopener"><i class="ti ti-route"></i> Itinéraire</a>
+          <a class="btn btn-plein" href="tel:+33139619187"><i class="ti ti-phone-call"></i> Appeler</a>
+        </span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -441,6 +452,41 @@
   document.getElementById('trajet-retry').addEventListener('click', calculer);
   document.querySelectorAll('.mode-btn').forEach(b =>
     b.addEventListener('click', () => afficheMode(b.dataset.mode)));
+</script>
+
+<!-- Carte Leaflet -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  (function(){
+    if(typeof L === 'undefined') return;
+    const RESTO = [48.9445403, 2.2514258];
+    const map = L.map('map', { scrollWheelZoom: false, zoomControl: true, attributionControl: true })
+      .setView(RESTO, 15);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap &copy; CARTO',
+      subdomains: 'abcd', maxZoom: 19
+    }).addTo(map);
+
+    // Marqueur rose à la marque
+    const pin = L.divIcon({
+      className: 'pin-wrap',
+      html: '<svg width="42" height="52" viewBox="0 0 42 52" xmlns="http://www.w3.org/2000/svg">'
+          + '<path d="M21 0C9.4 0 0 9.4 0 21c0 14.7 21 31 21 31s21-16.3 21-31C42 9.4 32.6 0 21 0z" fill="#C14B6E"/>'
+          + '<circle cx="21" cy="21" r="11" fill="#fff"/>'
+          + '<path d="M21 13 L29 28 Q21 25 13 28 Z" fill="#C14B6E"/></svg>',
+      iconSize: [42, 52], iconAnchor: [21, 52], popupAnchor: [0, -46]
+    });
+
+    L.marker(RESTO, { icon: pin, title: 'My Crêpe' }).addTo(map)
+      .bindPopup('<b>My Crêpe</b><br>136 rue Paul Vaillant Couturier<br>95100 Argenteuil')
+      .openPopup();
+
+    // Le zoom molette s'active seulement quand on clique sur la carte
+    map.on('click', () => map.scrollWheelZoom.enable());
+    map.on('mouseout', () => map.scrollWheelZoom.disable());
+    setTimeout(() => map.invalidateSize(), 200);
+  })();
 </script>
 </body>
 </html>
