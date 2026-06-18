@@ -338,6 +338,23 @@ h1,h2,h3{ font-family:var(--titre); font-weight:600; line-height:1.15; }
 }
 
 /* ============================================================
+   PAGE DE TEXTE (mentions légales)
+   ============================================================ */
+.legal-corps{ max-width:780px; margin:0 auto; }
+.legal-corps h2{ font-size:24px; margin:38px 0 12px; color:var(--rose-fonce); }
+.legal-corps h2:first-child{ margin-top:0; }
+.legal-corps p, .legal-corps li{ color:#403a37; font-size:15px; line-height:1.8; }
+.legal-corps ul{ padding-left:20px; margin:8px 0; }
+.legal-corps a{ color:var(--rose); }
+.legal-fiche{
+  background:var(--gris-clair); border-radius:var(--rayon);
+  padding:24px 28px; margin:8px 0 10px;
+}
+.legal-fiche dl{ display:grid; grid-template-columns:170px 1fr; gap:9px 16px; margin:0; }
+.legal-fiche dt{ color:var(--gris); font-size:14px; }
+.legal-fiche dd{ margin:0; font-size:14px; font-weight:500; color:var(--noir); }
+
+/* ============================================================
    LIGHTBOX (galerie)
    ============================================================ */
 .lightbox{

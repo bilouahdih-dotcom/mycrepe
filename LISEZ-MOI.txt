@@ -8,6 +8,7 @@ CONTENU DU DOSSIER
   index.html ......... La page d'accueil
   menu.html .......... La carte complète avec les prix
   composer.html ...... Le composeur de crêpe interactif (prix en direct)
+  mentions-legales.html  La page mentions légales
   css/style.css ...... Le design (couleurs, polices, mise en page)
   assets/ ............ Les photos et le logo
 
