@@ -71,6 +71,14 @@ POUR VOIR LE SITE
    s'affiche en direct. Pour modifier les ingrédients et les prix,
    ouvrez composer.html et cherchez la zone "const DATA = {".
 
+10) TEMPS DE TRAJET (page d'accueil, section Contact)
+   Le visiteur clique "Calculer mon temps de trajet" : le site lit
+   sa position (avec son accord) et affiche la duree + distance
+   jusqu'au resto, en voiture / velo / a pied.
+   IMPORTANT : la geolocalisation ne fonctionne qu'en HTTPS
+   (ex. une fois le site en ligne via GitHub Pages). En local
+   (fichier ouvert en double-clic), le navigateur la bloque souvent.
+
 
 ==================================================
   À VÉRIFIER / CONFIRMER AVEC LE CLIENT

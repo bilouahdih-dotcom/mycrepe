@@ -271,6 +271,43 @@ h1,h2,h3{ font-family:var(--titre); font-weight:600; line-height:1.15; }
   border-radius:var(--rayon); display:block; filter:grayscale(.15);
 }
 
+/* ---- Carte "Votre trajet" (géolocalisation) ---- */
+.trajet{
+  margin-top:26px; background:#fff; border:1px solid #efe9e4;
+  border-radius:var(--rayon); padding:28px 30px;
+}
+.trajet-tete{ display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:14px; }
+.trajet-tete .eyebrow{ margin-bottom:6px; }
+.trajet-tete h3{ font-size:24px; }
+.trajet-ico{ font-size:30px; color:var(--rose); }
+.trajet-desc{ color:var(--gris); font-size:15px; margin-bottom:18px; }
+.trajet-note{ color:var(--gris); font-size:12px; margin-top:12px; display:flex; align-items:center; gap:7px; }
+.trajet-note i{ color:var(--rose); }
+
+.trajet-load{ display:flex; align-items:center; gap:12px; color:var(--gris); font-size:15px; padding:6px 0; }
+.trajet-spin{
+  width:22px; height:22px; border-radius:50%; border:3px solid var(--rose-clair);
+  border-top-color:var(--rose); animation:tourne .8s linear infinite;
+}
+@keyframes tourne{ to{ transform:rotate(360deg); } }
+
+.mode-toggle{ display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap; }
+.mode-btn{
+  display:inline-flex; align-items:center; gap:7px; padding:9px 16px; border-radius:30px;
+  border:1.5px solid var(--rose-pastel); background:#fff; color:var(--rose-fonce);
+  font-family:var(--texte); font-size:14px; cursor:pointer; transition:.15s;
+}
+.mode-btn:hover{ border-color:var(--rose); }
+.mode-btn.actif{ background:var(--rose); color:#fff; border-color:var(--rose); }
+.mode-btn i{ font-size:17px; }
+
+.trajet-resultat{ display:flex; align-items:flex-end; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+.trajet-duree{ font-family:var(--titre); font-size:42px; font-weight:700; color:var(--noir); line-height:1; }
+.trajet-dist{ color:var(--gris); font-size:15px; margin-top:6px; }
+
+.trajet-erreur{ display:flex; align-items:center; gap:9px; color:var(--rose-fonce); font-size:15px; margin-bottom:16px; }
+.trajet-erreur i{ color:#e0892f; font-size:20px; }
+
 /* ---- Boutons de livraison ---- */
 .livraison{ display:flex; flex-direction:column; gap:11px; }
 .livr-btn{

@@ -250,6 +250,48 @@
         </div>
       </div>
     </div>
+
+    <!-- Carte de trajet (géolocalisation du visiteur) -->
+    <div class="trajet" id="trajet">
+      <div class="trajet-tete">
+        <div>
+          <p class="eyebrow">Itinéraire</p>
+          <h3>Votre trajet jusqu'à My Crêpe</h3>
+        </div>
+        <i class="ti ti-route trajet-ico" aria-hidden="true"></i>
+      </div>
+
+      <div id="trajet-init">
+        <p class="trajet-desc">Découvrez en un clic le temps qu'il vous faut pour nous rejoindre depuis votre position actuelle.</p>
+        <button class="btn btn-plein" id="trajet-go"><i class="ti ti-current-location"></i> Calculer mon temps de trajet</button>
+        <p class="trajet-note"><i class="ti ti-lock"></i> Votre position sert uniquement au calcul et n'est jamais enregistrée.</p>
+      </div>
+
+      <div id="trajet-load" class="trajet-load" hidden>
+        <span class="trajet-spin" aria-hidden="true"></span> Calcul de votre itinéraire…
+      </div>
+
+      <div id="trajet-res" hidden>
+        <div class="mode-toggle">
+          <button class="mode-btn actif" data-mode="driving"><i class="ti ti-car"></i> Voiture</button>
+          <button class="mode-btn" data-mode="cycling"><i class="ti ti-bike"></i> Vélo</button>
+          <button class="mode-btn" data-mode="walking"><i class="ti ti-walk"></i> À pied</button>
+        </div>
+        <div class="trajet-resultat">
+          <div>
+            <div class="trajet-duree" id="trajet-duree">— min</div>
+            <div class="trajet-dist" id="trajet-dist"></div>
+          </div>
+          <a class="btn btn-plein" id="trajet-start" target="_blank" rel="noopener"><i class="ti ti-navigation"></i> Démarrer</a>
+        </div>
+      </div>
+
+      <div id="trajet-err" hidden>
+        <p class="trajet-erreur"><i class="ti ti-alert-triangle"></i> <span id="trajet-err-msg"></span></p>
+        <button class="btn btn-ligne" id="trajet-retry"><i class="ti ti-refresh"></i> Réessayer</button>
+      </div>
+    </div>
+
     <iframe class="map-embed" src="https://www.google.com/maps?q=136%20rue%20Paul%20Vaillant%20Couturier%2C%2095100%20Argenteuil&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Carte My Crêpe Argenteuil"></iframe>
   </div>
 </section>
@@ -328,6 +370,77 @@
   document.getElementById('lb-fermer').addEventListener('click', fermerLb);
   lb.addEventListener('click', e => { if(e.target === lb) fermerLb(); });
   document.addEventListener('keydown', e => { if(e.key === 'Escape') fermerLb(); });
+
+  /* ---- Carte de trajet : temps de route depuis la position du visiteur ---- */
+  const RESTO = { lat: 48.9445403, lon: 2.2514258 }; // 136 rue Paul Vaillant Couturier
+  // Vitesses moyennes pour estimer vélo / à pied à partir de la distance (km/h)
+  const VITESSE = { cycling: 15, walking: 4.8 };
+  const MAPS_MODE = { driving: 'driving', cycling: 'bicycling', walking: 'walking' };
+
+  const tEls = {
+    init: document.getElementById('trajet-init'),
+    load: document.getElementById('trajet-load'),
+    res:  document.getElementById('trajet-res'),
+    err:  document.getElementById('trajet-err'),
+    duree: document.getElementById('trajet-duree'),
+    dist:  document.getElementById('trajet-dist'),
+    start: document.getElementById('trajet-start'),
+    errMsg: document.getElementById('trajet-err-msg'),
+  };
+  let trajet = null; // { user, distanceKm, drivingMin }
+
+  const montre = clef => ['init','load','res','err'].forEach(k => tEls[k].hidden = (k !== clef));
+
+  function minutes(min){
+    min = Math.round(min);
+    if(min < 60) return min + ' min';
+    const h = Math.floor(min / 60), m = min % 60;
+    return m ? `${h} h ${m}` : `${h} h`;
+  }
+
+  function afficheMode(mode){
+    if(!trajet) return;
+    const km = trajet.distanceKm;
+    let min = mode === 'driving' ? trajet.drivingMin : (km / VITESSE[mode]) * 60;
+    tEls.duree.textContent = minutes(min);
+    tEls.dist.textContent = km.toFixed(1).replace('.', ',') + ' km · jusqu’à My Crêpe';
+    tEls.start.href = `https://www.google.com/maps/dir/?api=1&origin=${trajet.user.lat},${trajet.user.lon}&destination=${RESTO.lat},${RESTO.lon}&travelmode=${MAPS_MODE[mode]}`;
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('actif', b.dataset.mode === mode));
+  }
+
+  function erreur(msg){ tEls.errMsg.textContent = msg; montre('err'); }
+
+  function calculer(){
+    if(!('geolocation' in navigator)){
+      erreur("La géolocalisation n'est pas disponible sur votre navigateur.");
+      return;
+    }
+    montre('load');
+    navigator.geolocation.getCurrentPosition(pos => {
+      const user = { lat: pos.coords.latitude, lon: pos.coords.longitude };
+      const url = `https://router.project-osrm.org/route/v1/driving/${user.lon},${user.lat};${RESTO.lon},${RESTO.lat}?overview=false`;
+      fetch(url)
+        .then(r => r.json())
+        .then(d => {
+          if(!d.routes || !d.routes.length) throw new Error('no-route');
+          const route = d.routes[0];
+          trajet = { user, distanceKm: route.distance / 1000, drivingMin: route.duration / 60 };
+          montre('res');
+          afficheMode('driving');
+        })
+        .catch(() => erreur("Impossible de calculer l'itinéraire pour le moment. Réessayez plus tard."));
+    }, err => {
+      const msg = err.code === 1
+        ? "Vous avez refusé l'accès à votre position. Autorisez-le pour calculer votre trajet."
+        : "Nous n'avons pas pu obtenir votre position. Réessayez.";
+      erreur(msg);
+    }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 });
+  }
+
+  document.getElementById('trajet-go').addEventListener('click', calculer);
+  document.getElementById('trajet-retry').addEventListener('click', calculer);
+  document.querySelectorAll('.mode-btn').forEach(b =>
+    b.addEventListener('click', () => afficheMode(b.dataset.mode)));
 </script>
 </body>
 </html>
