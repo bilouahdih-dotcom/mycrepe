@@ -60,6 +60,11 @@ POUR VOIR LE SITE
 7) GOOGLE MAPS
    Déjà intégré en bas de la page d'accueil (adresse réelle).
 
+8) LIVRAISON (Uber Eats / Deliveroo / Just Eat)
+   Les 3 boutons sont dans la page d'accueil (bloc rose "Commander")
+   et dans le pied de page. IMPORTANT : cliquez sur chacun pour
+   vérifier qu'il ouvre bien la VRAIE page du restaurant.
+
 
 ==================================================
   À VÉRIFIER / CONFIRMER AVEC LE CLIENT

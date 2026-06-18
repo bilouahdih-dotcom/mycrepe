@@ -257,11 +257,33 @@ h1,h2,h3{ font-family:var(--titre); font-weight:600; line-height:1.15; }
   border-radius:var(--rayon); display:block; filter:grayscale(.15);
 }
 
+/* ---- Boutons de livraison ---- */
+.livraison{ display:flex; flex-direction:column; gap:11px; }
+.livr-btn{
+  display:flex; align-items:center; gap:13px; background:#fff; color:var(--noir);
+  border-radius:40px; padding:11px 16px; font-weight:500; font-size:15px; transition:.2s;
+}
+.livr-btn:hover{ transform:translateY(-2px); }
+.livr-pastille{
+  width:32px; height:32px; border-radius:9px; display:flex; align-items:center;
+  justify-content:center; color:#fff; font-size:17px; flex-shrink:0;
+}
+.livr-btn small{ margin-left:auto; color:var(--gris); font-size:12px; }
+.uber{ background:#06C167; } .deliveroo{ background:#00CCBC; } .justeat{ background:#FF8000; }
+
+/* Réseaux sociaux dans le pied de page */
+.pied-socials{ display:flex; gap:10px; margin-top:18px; }
+.pied-socials a{
+  width:40px; height:40px; border-radius:50%; background:#3a3133; color:#fff;
+  display:flex; align-items:center; justify-content:center; font-size:19px; transition:.2s;
+}
+.pied-socials a:hover{ background:var(--rose); }
+
 /* ============================================================
    PIED DE PAGE
    ============================================================ */
 .pied{ background:var(--noir); color:#cdbfc4; padding:56px 0 26px; }
-.pied-haut{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px; padding-bottom:36px; border-bottom:1px solid #41383a; }
+.pied-haut{ display:grid; grid-template-columns:1.7fr 1fr 1fr 1fr; gap:36px; padding-bottom:36px; border-bottom:1px solid #41383a; }
 .pied .logo{ color:#fff; margin-bottom:14px; }
 .pied .logo span{ color:var(--rose-pastel); }
 .pied h4{ color:#fff; font-size:15px; letter-spacing:1px; text-transform:uppercase; margin-bottom:16px; font-weight:500; }
