@@ -210,6 +210,16 @@ h1,h2,h3{ font-family:var(--titre); font-weight:600; line-height:1.15; }
 .galerie img{ width:100%; height:100%; object-fit:cover; transition:.4s; }
 .galerie a:hover img{ transform:scale(1.08); }
 
+/* Masque le bouton "Recherche visuelle"/Bing du navigateur sur les images
+   (les images deviennent transparentes au pointeur ; le clic galerie passe
+   au lien parent <a>, donc la lightbox fonctionne toujours). */
+.galerie img, .plat-img img, .disque img, .menu-vignette, .lightbox img{
+  pointer-events:none;
+  -webkit-user-drag:none;
+  user-select:none;
+  -webkit-user-select:none;
+}
+
 /* AVIS */
 .avis{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
 .avis-carte{
