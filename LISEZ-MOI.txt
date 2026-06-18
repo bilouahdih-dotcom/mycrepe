@@ -44,8 +44,21 @@ POUR VOIR LE SITE
         <div class="g1"><img src="assets/ma-photo.jpg" alt="crêpe"></div>
 
 5) RÉSEAUX SOCIAUX
-   Dans index.html, section "socials", remplacez les href="#"
-   par vos vrais liens Instagram / Snap / TikTok.
+   Déjà reliés dans index.html (section "socials") :
+     - Instagram : @my_crepe_argenteuil
+     - Snapchat  : my-crepe95
+     - Facebook  : My Crêpe - Crêpes sucrées & salées
+   Vérifiez que ce sont bien les comptes officiels actuels.
+
+6) LES PHOTOS
+   - assets/photo-interieur.jpg = VRAIE photo du restaurant (Facebook).
+   - Les autres photos (crêpes, panini, milkshake) sont LIBRES DE
+     DROITS (Wikimedia Commons), mises en attendant vos vraies photos.
+     -> Remplacez-les en gardant le MÊME NOM de fichier et le site
+        se met à jour tout seul.
+
+7) GOOGLE MAPS
+   Déjà intégré en bas de la page d'accueil (adresse réelle).
 
 
 ==================================================
@@ -55,8 +68,8 @@ POUR VOIR LE SITE
        01 39 61 91 87  /  01 34 10 12 27
   - Horaires exacts (plusieurs sources se contredisent)
   - Les PRIX du menu sont des estimations -> à valider
-  - Vrais comptes Instagram / Snapchat / TikTok
-  - Logo officiel (remplacer la pastille ronde actuelle)
-  - Vraies photos des crêpes
+  - Comptes sociaux : confirmer qu'ils sont officiels et à jour
+  - Logo officiel (un logo provisoire a été dessiné : assets/logo.svg)
+  - Remplacer les photos de crêpes par les vraies (mêmes noms)
 
 Bon appétit ! 🥞
