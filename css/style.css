@@ -535,10 +535,37 @@ h1,h2,h3{ font-family:var(--titre); font-weight:600; line-height:1.15; }
   .pied-bas{ justify-content:center; text-align:center; }
   .recap{ position:static; }
   .menu-vignette{ display:none; }
+
+  /* Header épuré sur mobile : logo + menu burger seulement */
+  .entete .btn-plein{ display:none; }
+  .entete .wrap{ height:66px; }
+  .nav{ top:66px; }
+  .logo{ font-size:22px; }
+  .logo .pastille{ width:36px; height:36px; }
+
+  /* Titres des pages carte / composeur / légal */
+  .carte-hero h1, .compo-hero h1{ font-size:34px; }
+  .carte-hero, .compo-hero{ padding:44px 24px 34px; }
+  .compo-hero p{ font-size:15px; }
+  .legal-corps h2{ font-size:21px; }
+  .legal-fiche{ padding:20px; }
+  .legal-fiche dl{ grid-template-columns:1fr; gap:2px 0; }
+  .legal-fiche dt{ margin-top:8px; }
+
+  /* Trajet : durée un peu plus compacte */
+  .trajet{ padding:24px 22px; }
+  .trajet-tete h3{ font-size:21px; }
 }
 
 @media (max-width:480px){
   .wrap{ padding:0 18px; }
   .hero h1{ font-size:32px; }
+  .hero .disque{ width:200px; height:200px; }
   .galerie{ grid-template-columns:repeat(2,1fr); }
+  .annonce{ font-size:12px; }
+  .section-tete h2{ font-size:26px; }
+  .trajet-duree{ font-size:36px; }
+  .map-foot{ padding:14px 16px; }
+  .map-actions{ width:100%; }
+  .map-actions .btn{ flex:1; justify-content:center; }
 }
